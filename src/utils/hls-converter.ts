@@ -126,13 +126,13 @@ type EncodeByResolution = {
 };
 
 const encodeMax720 = async ({
-  bitrate,
-  inputPath,
-  isHasAudio,
-  outputPath,
-  outputSegmentPath,
-  resolution,
-}: EncodeByResolution) => {
+                              bitrate,
+                              inputPath,
+                              isHasAudio,
+                              outputPath,
+                              outputSegmentPath,
+                              resolution,
+                            }: EncodeByResolution) => {
   const { $ } = await import('zx');
   const slash = (await import('slash')).default;
 
@@ -189,13 +189,13 @@ const encodeMax720 = async ({
 };
 
 const encodeMax1080 = async ({
-  bitrate,
-  inputPath,
-  isHasAudio,
-  outputPath,
-  outputSegmentPath,
-  resolution,
-}: EncodeByResolution) => {
+                               bitrate,
+                               inputPath,
+                               isHasAudio,
+                               outputPath,
+                               outputSegmentPath,
+                               resolution,
+                             }: EncodeByResolution) => {
   const { $ } = await import('zx');
   const slash = (await import('slash')).default;
 
@@ -258,13 +258,13 @@ const encodeMax1080 = async ({
 };
 
 const encodeMax1440 = async ({
-  bitrate,
-  inputPath,
-  isHasAudio,
-  outputPath,
-  outputSegmentPath,
-  resolution,
-}: EncodeByResolution) => {
+                               bitrate,
+                               inputPath,
+                               isHasAudio,
+                               outputPath,
+                               outputSegmentPath,
+                               resolution,
+                             }: EncodeByResolution) => {
   const { $ } = await import('zx');
   const slash = (await import('slash')).default;
 
@@ -346,13 +346,13 @@ const encodeMax1440 = async ({
 };
 
 const encodeMaxOriginal = async ({
-  bitrate,
-  inputPath,
-  isHasAudio,
-  outputPath,
-  outputSegmentPath,
-  resolution,
-}: EncodeByResolution) => {
+                                   bitrate,
+                                   inputPath,
+                                   isHasAudio,
+                                   outputPath,
+                                   outputSegmentPath,
+                                   resolution,
+                                 }: EncodeByResolution) => {
   const { $ } = await import('zx');
   const slash = (await import('slash')).default;
 
@@ -498,9 +498,9 @@ export async function convertAndUploadToSupabase(
   console.log('🔁 Encoding HLS for:', mergedFilePath);
   let aspectInfo:
     | {
-        fractionRatio: string;
-        commonName: string;
-      }
+    fractionRatio: string;
+    commonName: string;
+  }
     | undefined;
   let width: number | undefined;
   let height: number | undefined;
