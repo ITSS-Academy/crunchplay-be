@@ -171,7 +171,7 @@ export class VideoService {
     // https://zkeqdgfyxlmcrmfehjde.supabase.co/storage/v1/object/public/videos/248e1cc9-c9ae-46cd-8e16-8da531b058f9/master.m3u8
     const { data, error } = await supabase
       .from('video')
-      .select()
+      .select('*, profile!FK_553f97d797c91d51556037b99e5(*)')
       .eq('id', videoId)
       .single();
     if (error) {
@@ -226,7 +226,7 @@ export class VideoService {
     };
   }
 
-  async getLikesAndComments(videoId: string, userId: string) {
+  async getLikesAndComments(videoId: string, userId?: string) {
     // Get likes for the video
     const {
       data: likes,
@@ -259,8 +259,13 @@ export class VideoService {
       throw new BadRequestException('Failed to fetch comments');
     }
 
+    console.log('comments', likes, userId);
     // check user isLiked
-    const isLiked = likes.some((like) => like.profileId === userId);
+    const isLiked = userId
+      ? likes.some((like) => like.profileId === userId)
+      : false;
+
+    console.log(isLiked);
 
     return {
       likesCount,
@@ -547,6 +552,8 @@ export class VideoService {
         .skip(page * limit)
         .take(limit)
         .getManyAndCount();
+
+      console.log(data, count);
 
       return {
         videos: data.map((video) => ({
